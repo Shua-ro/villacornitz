@@ -100,6 +100,9 @@ nav a:hover {
 }
 .nav-cta {
   padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--gold);
   color: var(--gold) !important;
   border-radius: 1px;
@@ -114,7 +117,6 @@ nav a:hover {
 
 /* ── HERO ── */
 #hero {
-  background-image: url(hero.png);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -128,12 +130,16 @@ nav a:hover {
   overflow: hidden;
 }
 .hero-video-wrap {
-  background-image: url("hero.png");
-  background-size: cover;
-  background-position: center;
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
+}
+.hero-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateY(70px);
 }
 .hero-video-wrap::after {
   content: "";
@@ -141,10 +147,10 @@ nav a:hover {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(5, 12, 26, 0.72) 0%,
-    rgba(5, 12, 26, 0.4) 40%,
-    rgba(5, 12, 26, 0.55) 70%,
-    rgba(5, 12, 26, 0.92) 100%
+    rgba(5, 12, 26, 0) 0%,
+    rgba(5, 12, 26, 0) 40%,
+    rgba(5, 12, 26, 0) 70%,
+    rgba(5, 12, 26, 0) 100%
   );
 }
 
@@ -246,14 +252,20 @@ nav a:hover {
 .btn-ghost.second {
   color: var(--navy);
   animation: fadeUp 1s 0s forwards;
+  border: 1px solid black;
 }
 
 .btn-ghost:hover {
-  border-color: rgba(10, 25, 47, 0.7);
+  background: white;
+  color: var(--navy);
+  border-color: white;
   transform: translateY(-2px);
+  transition: ease 0.25s;
 }
 .btn-ghost.second:hover {
-
+  background-color: black;
+  color: white;
+  transition: ease 0.25s;
 }
 /* Scroll indicator */
 .scroll-pulse {
@@ -342,7 +354,9 @@ nav a:hover {
   padding-right: 64px;
 }
 .editorial-img-frame {
-  background-image: url(section2.png);
+  background-image: url(editorial1.jpg);
+  background-size: cover;
+  background-position: center;
   position: relative;
   width: 100%;
   aspect-ratio: 4/5;
@@ -455,12 +469,11 @@ nav a:hover {
   flex-shrink: 0;
 }
 
-/* ── SECTION 3: SPACES ── */
+/* ── SECTION 3: ADMISSION & POLICIES ── */
 #spaces {
-  padding: 160px 0;
+  padding: 120px 0;
   background: var(--cream);
   position: relative;
-  overflow: hidden;
 }
 #spaces::before {
   content: "";
@@ -476,8 +489,237 @@ nav a:hover {
     transparent
   );
 }
-  
-/* ── SECTION 4: CLOSING CTA ── */
+.spaces-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 0 56px;
+}
+.spaces-heading {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 48px;
+}
+
+/* Rates — dot-leader rows */
+.rates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.rate-row {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--navy);
+  line-height: 1;
+}
+.rate-dots {
+  flex: 1;
+  min-width: 16px;
+  height: 0;
+  align-self: flex-end;
+  border-bottom: 1px dotted rgba(10, 25, 47, 0.25);
+  margin: 0 12px 2px;
+}
+.rate-price {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.rate-row-free .rate-price {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Policy divider */
+.spaces-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(10, 25, 47, 0.12);
+  margin: 48px 0;
+}
+
+/* Cottage policy — serif text */
+.spaces-policy p {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--text-body);
+  letter-spacing: 0.02em;
+}
+.spaces-policy p span{
+  color: var(--gold);
+  font-weight: 500;
+}
+/* CTA link */
+.spaces-cta {
+  text-align: center;
+  margin-top: 56px;
+}
+.spaces-cta a {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--gold);
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(229, 169, 59, 0.3);
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+.spaces-cta a:hover {
+  color: var(--navy);
+  border-color: rgba(10, 25, 47, 0.3);
+}
+
+/* ── SECTION 4: LOCATION ── */
+#location {
+  padding: 160px 0;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+#location::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(229, 169, 59, 0.2),
+    transparent
+  );
+}
+.location-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.location-text-col {
+  padding-right: 24px;
+}
+.location-tag {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+.location-heading {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 40px;
+}
+.location-address {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+.location-env {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+.location-link {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--gold);
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(229, 169, 59, 0.3);
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+.location-link:hover {
+  color: var(--navy);
+  border-color: rgba(10, 25, 47, 0.3);
+}
+.location-map-col {
+  position: relative;
+}
+.location-map-frame {
+  width: 100%;
+  min-height: 400px;
+  overflow: hidden;
+  filter: grayscale(100%) invert(92%) sepia(4%) saturate(400%) hue-rotate(320deg)
+    brightness(95%) contrast(95%);
+}
+.location-map-frame iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  display: block;
+}
+
+/* ── FLOATING ACTION BUTTON ── */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 200;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(10, 25, 47, 0.25);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  text-decoration: none;
+}
+.fab:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 28px rgba(10, 25, 47, 0.35);
+}
+.fab svg {
+  display: block;
+}
+
+/* ── SECTION 5: CLOSING CTA ── */
 #closing {
   padding: 180px 56px;
   background: var(--cream-alt);
@@ -581,6 +823,7 @@ nav a:hover {
 .btn-gold-large:hover {
   background: var(--gold-light);
   transform: translateY(-3px);
+  transition: ease 0.25s;
   box-shadow: 0 20px 60px rgba(229, 169, 59, 0.35);
 }
 .closing-note {
@@ -699,14 +942,46 @@ footer {
     opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.stagger-children.visible > *:nth-child(1) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0s; }
-.stagger-children.visible > *:nth-child(2) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.07s; }
-.stagger-children.visible > *:nth-child(3) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.14s; }
-.stagger-children.visible > *:nth-child(4) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.21s; }
-.stagger-children.visible > *:nth-child(5) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.28s; }
-.stagger-children.visible > *:nth-child(6) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.35s; }
-.stagger-children.visible > *:nth-child(7) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.42s; }
-.stagger-children.visible > *:nth-child(8) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.49s; }
+.stagger-children.visible > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+.stagger-children.visible > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.07s;
+}
+.stagger-children.visible > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.14s;
+}
+.stagger-children.visible > *:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.21s;
+}
+.stagger-children.visible > *:nth-child(5) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.28s;
+}
+.stagger-children.visible > *:nth-child(6) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.35s;
+}
+.stagger-children.visible > *:nth-child(7) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.42s;
+}
+.stagger-children.visible > *:nth-child(8) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.49s;
+}
 
 /* ── GOLD DIVIDER ── */
 .gold-divider {
