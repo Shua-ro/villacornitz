@@ -13,14 +13,43 @@ const revealObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 revealEls.forEach(el => revealObs.observe(el));
 
-/* ── HERO VIDEO TWO-FILE LOOP ── */
-const heroVideo = document.querySelector('.hero-video-wrap video');
-let showReverse = false;
+/* ── HERO VIDEO PRELOAD + FADE SWAP ── */
+const bg1 = document.getElementById('bg1');
+const bg2 = document.getElementById('bg2');
+let preloading = false;
 
-heroVideo.addEventListener('ended', () => {
-  showReverse = !showReverse;
-  heroVideo.src = showReverse ? 'herobg3.mp4' : 'herobg.mp4';
-  heroVideo.play();
+bg1.play();
+bg2.play(); // starts hidden, stays decoded from the start
+
+// 1s before bg1 ends, reset bg2 to the beginning
+bg1.addEventListener('timeupdate', function preloadNext() {
+  if (!preloading && bg1.currentTime >= bg1.duration - 0.5) {
+    preloading = true;
+    bg2.currentTime = 0;
+    bg2.play();
+  }
+});
+
+// When bg1 ends, fade it out and show bg2
+bg1.addEventListener('ended', () => {
+  preloading = false;
+  bg1.classList.remove('active');
+  bg2.classList.add('active');
+});
+
+// Same for bg2 → bg1: 1s before bg2 ends, start playing bg1
+bg2.addEventListener('timeupdate', function preloadNext() {
+  if (!preloading && bg2.currentTime >= bg2.duration - 0.3) {
+    preloading = true;
+    bg1.currentTime = 0;
+    bg1.play();
+  }
+});
+
+bg2.addEventListener('ended', () => {
+  preloading = false;
+  bg2.classList.remove('active');
+  bg1.classList.add('active');
 });
 
 /* ── HAMBURGER MENU ── */
