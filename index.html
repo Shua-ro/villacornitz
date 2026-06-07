@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:title" content="Villa Cornitz Resort" />
+    <meta property="og:description" content="Your Private Tropical Escape." />
+    <meta property="og:image" content="your-preview-image.jpg" />
+    <meta property="og:url" content="https://yoursite.com" />
+
     <title>Villa Cornitz Resort</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +29,7 @@
         <span></span>
       </button>
       <nav>
-        <a href="#rates">Rates</a>
+        <a href="#rates">Prices</a>
         <a href="#location">Location</a>
         <a href="#closing">Contact</a>
         <a href="booking.html" class="nav-cta">Book Now</a>
@@ -33,11 +39,18 @@
     <!-- SECTION 1: HERO -->
     <section id="hero">
       <div class="hero-video-wrap">
-        <video autoplay muted playsinline preload="auto" class="bg-video active" id="bg1">
-          <source src="Herobg1.webm" type="video/webm" />
+        <video
+          autoplay
+          muted
+          playsinline
+          preload="auto"
+          class="bg-video active"
+          id="bg1"
+        >
+          <source src="bg.webm" type="video/webm" />
         </video>
         <video muted playsinline preload="auto" class="bg-video" id="bg2">
-          <source src="Herobg2.webm" type="video/webm" />
+          <source src="bg1.webm" type="video/webm" />
         </video>
       </div>
       <div class="hero-content">
@@ -45,8 +58,8 @@
         <h1 class="hero-title">Villa Cornitz<br /><em>Mini Resort</em></h1>
         <p class="hero-subtitle">Your Private Tropical Escape.</p>
         <div>
-          <a href="#closing" class="btn-primary">Reserve Your Day</a>
-          <a href="#rates" class="btn-ghost">Explore Spaces</a>
+          <a href="booking.html" class="btn-primary">Reserve Your Day</a>
+          <a href="#rates" class="btn-ghost">View Prices</a>
         </div>
       </div>
       <div class="scroll-pulse">
@@ -73,16 +86,16 @@
           <div class="reveal reveal-delay-2">
             <p class="editorial-body">
               Villa Cornitz Resort is a public swim facility situated in a rural
-              barangay setting, surrounded by open fields. The property provides a
-              clean, accessible environment for local groups and families looking
-              to gather and swim.
+              barangay setting, surrounded by open fields. The property provides
+              a clean, accessible environment for local groups and families
+              looking to gather and swim.
             </p>
             <p class="editorial-body">
               The central feature of the resort is the swimming pool, which is
-              supplied continuously by a fresh, natural underground water source.
-              This source ensures the water remains consistently crystal clear and
-              naturally low in temperature, providing an efficient way to counter
-              the local climate at an affordable price point.
+              supplied continuously by a fresh, natural underground water
+              source. This source ensures the water remains consistently crystal
+              clear and naturally low in temperature, providing an efficient way
+              to counter the local climate at an affordable price point.
             </p>
           </div>
           <div class="editorial-rule reveal reveal-delay-2"></div>
@@ -100,7 +113,7 @@
     <!-- SECTION 3: ADMISSION & POLICIES -->
     <section id="rates">
       <div class="spaces-inner">
-        <h2 class="spaces-heading reveal">Admission &amp; Policies</h2>
+        <h2 class="spaces-heading reveal">Entrance Fees</h2>
 
         <div class="rates-list reveal reveal-delay-1">
           <div class="rate-row">
@@ -124,14 +137,15 @@
 
         <div class="spaces-policy reveal reveal-delay-2">
           <p>
-            Cottage Allocation: One complimentary <span class = "free-cotage">FREE</span> cottage is included per
-            group. Additional cottage requests require prior
-            confirmation via direct contact.
+            Cottage Allocation: One complimentary
+            <span class="free-cotage">FREE</span> cottage is included per group.
+            Additional cottage requests require prior confirmation via direct
+            contact.
           </p>
         </div>
 
         <div class="spaces-cta reveal reveal-delay-3">
-          <a href="#">Proceed to Booking</a>
+          <a href="booking.html">Proceed to Booking</a>
         </div>
       </div>
     </section>
@@ -147,8 +161,8 @@
           </p>
           <p class="location-env reveal reveal-delay-2">
             Located deep within the barangay paths, completely surrounded by
-            open rice fields. The access roads are fully paved and accessible
-            by standard consumer vehicles.
+            open rice fields. The access roads are fully paved and accessible by
+            standard consumer vehicles.
           </p>
           <a
             class="location-link reveal reveal-delay-3"
@@ -188,8 +202,13 @@
           <span>Daytime Experience — 7:00 AM to 12:00 PM</span>
         </div>
         <div class="closing-cta-group reveal stagger-children">
-          <a href="#" class="btn-gold-large">Reserve Your Day</a>
-          <a href="#" class="btn-ghost second" style="margin-left: 0"
+          <a href="booking.html" class="btn-gold-large">Reserve Your Day</a>
+          <a
+            href="https://m.me/villa.cornitz.resort"
+            rel="noopener"
+            target="_blank"
+            class="btn-ghost second"
+            style="margin-left: 0"
             >Contact Us</a
           >
         </div>
@@ -204,7 +223,7 @@
     <footer>
       <div class="footer-logo">Villa<span>Cornitz</span> Resort</div>
       <ul class="footer-links">
-        <li><a href="#rates">Rates</a></li>
+        <li><a href="#rates">Prices</a></li>
         <li><a href="#location">Location</a></li>
         <li><a href="#closing">Contact</a></li>
       </ul>
@@ -214,11 +233,20 @@
     </footer>
 
     <!-- FLOATING ACTION BUTTON -->
-    <a href="https://m.me/villa.cornitz.resort" class="fab" target="_blank" rel="noopener" aria-label="Chat with us">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z" fill="white"/>
-        <path d="M10 9H8V12H10V9ZM16 9H14V12H16V9Z" fill="#0A192F"/>
-      </svg>
+    <a
+      href="https://m.me/villa.cornitz.resort"
+      class="fab"
+      target="_blank"
+      rel="noopener"
+      aria-label="Chat with us"
+    >
+      <img
+        src="messenger.png"
+        alt=""
+        width="28"
+        height="28"
+        style="filter: brightness(0) invert(1)"
+      />
     </a>
 
     <script src="script.js"></script>

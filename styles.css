@@ -11,11 +11,11 @@
   --cream: #fbf9f6;
   --cream-alt: #f7f4ef;
   --navy: #0a192f;
-  --gold: #e5a93b;
-  --gold-light: #f0c46a;
+  --gold: #c8891a;
+  --gold-light: #e5a93b;
   --gold-dim: rgba(229, 169, 59, 0.15);
   --text-body: #0a192f;
-  --text-muted: rgba(10, 25, 47, 0.5);
+  --text-muted: rgba(10, 25, 47, 0.65);
   --border-light: rgba(10, 25, 47, 0.1);
   --border-medium: rgba(10, 25, 47, 0.2);
   --serif: "Cormorant Garamond", Georgia, serif;
@@ -100,19 +100,21 @@ nav a:hover {
 }
 .nav-cta {
   padding: 10px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--gold);
-  color: var(--gold) !important;
-  border-radius: 1px;
-  transition:
-    background 0.3s,
-    color 0.3s !important;
-}
-.nav-cta:hover {
   background: var(--gold);
   color: var(--navy) !important;
+  border: 1px solid var(--gold);
+  border-radius: 1px;
+  font-weight: 500;
+  transition:
+    background 0.3s,
+    transform 0.2s,
+    box-shadow 0.3s;
+}
+.nav-cta:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(229, 169, 59, 0.3);
 }
 
 /* ── HERO ── */
@@ -135,15 +137,17 @@ nav a:hover {
   z-index: 0;
   overflow: hidden;
 }
+.bg-video {
+  filter: brightness(1.0);
+}
 .hero-video-wrap .bg-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: translateY(70px);
+  transform: translateY(0px);
   opacity: 0.01;
-  
 }
 .hero-video-wrap .bg-video.active {
   opacity: 1;
@@ -155,10 +159,10 @@ nav a:hover {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(5, 12, 26, 0) 0%,
-    rgba(5, 12, 26, 0) 40%,
-    rgba(5, 12, 26, 0) 70%,
-    rgba(5, 12, 26, 0) 100%
+    rgba(5, 12, 26, 0.72) 0%,
+    rgba(5, 12, 26, 0.4) 20%,
+    rgba(5, 12, 26, 0.65) 50%,
+    rgba(5, 12, 26, 0.82) 100%
   );
 }
 
@@ -170,8 +174,8 @@ nav a:hover {
 }
 .hero-eyebrow {
   font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: bold;
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--gold);
@@ -179,7 +183,7 @@ nav a:hover {
   opacity: 0;
   transform: translateY(16px);
   animation: fadeUp 1s 0.3s forwards;
-  text-shadow: 0 2px 12px rgba(251, 249, 246, 0.8);
+  text-shadow: 0 2px 12px rgba(136, 87, 13, 0.466);
 }
 .hero-title {
   font-family: var(--serif);
@@ -442,7 +446,7 @@ nav a:hover {
 .editorial-body {
   font-family: var(--sans);
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.9;
   color: var(--text-body);
   margin-bottom: 20px;
@@ -478,6 +482,9 @@ nav a:hover {
 }
 
 /* ── SECTION 3: ADMISSION & POLICIES ── */
+#rates {
+  scroll-margin-top: 120px;
+}
 #spaces {
   padding: 120px 0;
   background: var(--cream);
@@ -500,8 +507,9 @@ nav a:hover {
 .spaces-inner {
   max-width: 640px;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 0px;
   padding: 0 56px;
+  margin-top: 100px;
 }
 .spaces-heading {
   font-family: var(--sans);
@@ -568,7 +576,7 @@ nav a:hover {
   color: var(--text-body);
   letter-spacing: 0.02em;
 }
-.spaces-policy p span{
+.spaces-policy p span {
   color: var(--gold);
   font-weight: 500;
 }
@@ -649,7 +657,7 @@ nav a:hover {
   margin-bottom: 40px;
 }
 .location-address {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 24px;
   font-weight: 300;
   line-height: 1.5;
@@ -657,7 +665,7 @@ nav a:hover {
   margin-bottom: 24px;
 }
 .location-env {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 17px;
   font-weight: 300;
   font-style: italic;
@@ -690,8 +698,8 @@ nav a:hover {
   width: 100%;
   min-height: 400px;
   overflow: hidden;
-  filter: grayscale(100%) invert(92%) sepia(4%) saturate(400%) hue-rotate(320deg)
-    brightness(95%) contrast(95%);
+  filter: grayscale(100%) invert(92%) sepia(4%) saturate(400%)
+    hue-rotate(320deg) brightness(95%) contrast(95%);
 }
 .location-map-frame iframe {
   width: 100%;

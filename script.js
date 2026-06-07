@@ -18,6 +18,10 @@ const bg1 = document.getElementById('bg1');
 const bg2 = document.getElementById('bg2');
 let preloading = false;
 
+// Slow down the hero background videos to reduce dizziness
+bg1.playbackRate = 1;
+bg2.playbackRate = 1;
+
 bg1.play();
 bg2.play(); // starts hidden, stays decoded from the start
 

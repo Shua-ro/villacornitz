@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:title" content="Villa Cornitz Resort — Booking" />
+    <meta property="og:description" content="Reserve your day at Villa Cornitz." />
+    <meta property="og:image" content="preview.jpg" />
+    <meta property="og:url" content="https://yoursite.com/booking.html" />
+
+    <title>Booking — Villa Cornitz Resort</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="booking.css" />
+  </head>
+
+  <body>
+    <!-- HEADER (minimal) -->
+    <header id="booking-header">
+      <div class="logo">Villa<span>Cornitz</span> Resort</div>
+      <nav>
+        <a href="index.html">&larr; Back to Home</a>
+      </nav>
+    </header>
+
+    <!-- MAIN LAYOUT -->
+    <main class="booking-page">
+      <div class="booking-grid">
+        <!-- ── LEFT: FORM ── -->
+        <section class="booking-form">
+          <!-- Schedule -->
+          <div class="booking-form-group">
+            <div class="booking-group-heading">Schedule</div>
+            <div class="booking-field">
+              <label for="booking-date">Select Date</label>
+              <input
+                type="date"
+                id="booking-date"
+                name="booking-date"
+                min="2026-06-08"
+              />
+            </div>
+            <div class="booking-field">
+              <label for="booking-time">Daytime Slot</label>
+              <input
+                type="text"
+                id="booking-time"
+                value="7:00 AM — 12:00 PM"
+                disabled
+              />
+            </div>
+          </div>
+
+          <!-- Guests -->
+          <div class="booking-form-group">
+            <div class="booking-group-heading">Guests</div>
+
+            <div class="booking-field">
+              <label>Above 9 Years Old (&times;₱70)</label>
+              <div class="stepper">
+                <button type="button" class="stepper-btn" data-target="guests-adult" data-dir="-1">−</button>
+                <input type="number" class="stepper-value" id="guests-adult" value="0" min="0" readonly />
+                <button type="button" class="stepper-btn" data-target="guests-adult" data-dir="1">+</button>
+              </div>
+            </div>
+
+            <div class="booking-field">
+              <label>9 Years Old &amp; Below (&times;₱50)</label>
+              <div class="stepper">
+                <button type="button" class="stepper-btn" data-target="guests-child" data-dir="-1">−</button>
+                <input type="number" class="stepper-value" id="guests-child" value="0" min="0" readonly />
+                <button type="button" class="stepper-btn" data-target="guests-child" data-dir="1">+</button>
+              </div>
+            </div>
+
+            <div class="booking-field">
+              <label>Handcarried Infants (FREE)</label>
+              <div class="stepper">
+                <button type="button" class="stepper-btn" data-target="guests-infant" data-dir="-1">−</button>
+                <input type="number" class="stepper-value" id="guests-infant" value="0" min="0" readonly />
+                <button type="button" class="stepper-btn" data-target="guests-infant" data-dir="1">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Details -->
+          <div class="booking-form-group">
+            <div class="booking-group-heading">Contact Details</div>
+            <div class="booking-field">
+              <label for="guest-name">Full Name</label>
+              <input type="text" id="guest-name" name="guest-name" placeholder="e.g. Juan Dela Cruz" />
+            </div>
+            <div class="booking-field">
+              <label for="guest-mobile">Mobile Number</label>
+              <input type="text" id="guest-mobile" name="guest-mobile" placeholder="e.g. 0917 123 4567" />
+            </div>
+          </div>
+        </section>
+
+        <!-- ── RIGHT: ORDER SUMMARY ── -->
+        <aside class="booking-summary" id="order-summary">
+          <div class="summary-title">Order Summary</div>
+
+          <div class="summary-line" id="line-adult" style="display:none;">
+            <span class="line-label">Above 9 Years Old</span>
+            <span class="line-qty" id="qty-adult">x0</span>
+            <span class="line-price" id="price-adult">₱0</span>
+          </div>
+
+          <div class="summary-line" id="line-child" style="display:none;">
+            <span class="line-label">9 Years Old &amp; Below</span>
+            <span class="line-qty" id="qty-child">x0</span>
+            <span class="line-price" id="price-child">₱0</span>
+          </div>
+
+          <div class="summary-line free" id="line-infant" style="display:none;">
+            <span class="line-label">Handcarried Infants</span>
+            <span class="line-qty" id="qty-infant">x0</span>
+            <span class="line-price">Free</span>
+          </div>
+
+          <div class="summary-line cottage">
+            <span class="line-label">Cottage Allocation</span>
+            <span class="line-price">1 Included (Free)</span>
+          </div>
+
+          <div class="summary-total">
+            <span>Total Amount</span>
+            <span class="total-amount" id="total-amount">₱0</span>
+          </div>
+
+          <div class="summary-downpayment">
+            <span>50% Downpayment Required</span>
+            <span class="dp-amount" id="dp-amount">₱0</span>
+          </div>
+
+          <button class="summary-cta" id="pay-btn">Proceed to Payment</button>
+        </aside>
+      </div>
+    </main>
+
+    <script src="booking.js"></script>
+  </body>
+</html>
