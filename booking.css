@@ -40,7 +40,7 @@
   content: "";
   flex: 1;
   height: 0.5px;
-  background: rgba(10, 25, 47, 0.12);
+  background: var(--border-color);
 }
 
 /* Flat minimal form fields */
@@ -57,7 +57,7 @@
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(10, 25, 47, 0.5);
+  color: var(--text-muted);
   margin-bottom: 8px;
 }
 .booking-field input[type="text"],
@@ -70,7 +70,7 @@
   font-weight: 400;
   color: var(--navy);
   background: transparent;
-  border: 1px solid rgba(10, 25, 47, 0.2);
+  border: 1px solid var(--border-color);
   border-radius: 0;
   outline: none;
   transition: border-color 0.25s ease;
@@ -91,7 +91,7 @@
   border-style: dashed;
 }
 .booking-field input::placeholder {
-  color: rgba(10, 25, 47, 0.3);
+  color: var(--text-muted);
   font-weight: 300;
 }
 
@@ -350,4 +350,19 @@
 }
 #booking-header .hamburger {
   display: none !important;
+}
+
+/* ── DARK MODE FORM INPUT OVERRIDES ── */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+  border-color: var(--gold);
+  outline: none;
 }
