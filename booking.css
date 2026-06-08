@@ -370,12 +370,12 @@
 
 @media (max-width: 768px) {
   .booking-page {
-    padding-top: 125px; /* 44px notice + ~81px header */
+    padding-top: 160px;
     padding-left: 24px;
     padding-right: 24px;
   }
   body.dev-notice-dismissed .booking-page {
-    padding-top: 80px;
+    padding-top: 100px;
   }
   .booking-grid {
     gap: 40px;
@@ -387,13 +387,13 @@
 
 @media (max-width: 480px) {
   .booking-page {
-    padding-top: 115px; /* 44px notice + ~71px header */
+    padding-top: 150px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 60px;
   }
   body.dev-notice-dismissed .booking-page {
-    padding-top: 70px;
+    padding-top: 90px;
   }
   .booking-grid {
     gap: 32px;
@@ -452,4 +452,10 @@ body.dev-notice-dismissed .booking-page {
 [data-theme="dark"] textarea:focus {
   border-color: var(--gold);
   outline: none;
+}
+
+/* Date picker calendar icon in dark mode */
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
 }

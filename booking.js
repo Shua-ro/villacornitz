@@ -130,6 +130,33 @@ fetch('blocked-dates.json')
 dateInput?.addEventListener('change', checkDateAvailability);
 dateInput?.addEventListener('input', checkDateAvailability);
 
+// ─── PH MOBILE NUMBER VALIDATION (real-time feedback) ───
+function isValidPHMobile(num) {
+  if (!num) return false;
+  const cleaned = num.replace(/\s/g, '');
+  if (cleaned.startsWith('09')) {
+    return cleaned.length === 11 && /^\d{11}$/.test(cleaned);
+  }
+  if (cleaned.startsWith('+63')) {
+    return cleaned.length === 13 && /^\+63\d{10}$/.test(cleaned);
+  }
+  return false;
+}
+
+const mobileInput = document.getElementById('guest-mobile');
+mobileInput?.addEventListener('input', () => {
+  const val = mobileInput.value.trim();
+  if (!val) {
+    mobileInput.style.borderColor = '';
+    return;
+  }
+  if (isValidPHMobile(val)) {
+    mobileInput.style.borderColor = '#16a34a'; // green — valid
+  } else {
+    mobileInput.style.borderColor = '#b91c1c'; // red — invalid
+  }
+});
+
 // Dev notice dismiss
 document.querySelector('.dev-notice-close')?.addEventListener('click', () => {
   document.querySelector('.dev-notice')?.classList.add('hidden');

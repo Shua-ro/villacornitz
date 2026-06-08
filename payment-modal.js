@@ -8,7 +8,7 @@
   const GCASH = {
     name: 'Villa Cornitz Resort',
     number: '+63 9636493236',
-    qrImage: '', // e.g. 'assets/gcash-qr.png' — leave empty for placeholder
+    qrImage: '', // e.g. 'assets/gcash-qr.png' — leave empty for placeholder 
   };
 
   // ─── EMAILJS ───
@@ -65,7 +65,7 @@
                 <line x1="6" y1="18" x2="6" y2="18.01" stroke-width="2"/>
                 <line x1="18" y1="18" x2="18" y2="18.01" stroke-width="2"/>
               </svg>
-              <span>Replace with your QR</span>
+              <span>Replace with QR</span>
             </div>
             <div class="payment-qr-account">
               Send to: <strong id="gcash-name">${GCASH.name}</strong>
@@ -88,6 +88,27 @@
               placeholder="e.g. 1234 5678 9012 3456"
               autocomplete="off"
             />
+          </div>
+
+          <!-- Screenshot upload -->
+          <div class="payment-upload-group">
+            <label for="payment-screenshot">Upload Payment Screenshot (optional)</label>
+            <p class="payment-upload-disclaimer">⚠️ Screenshot upload is currently unavailable — please proceed using the reference number only.</p>
+            <div class="payment-upload-box" id="upload-box">
+              <input type="file" id="payment-screenshot" accept="image/*" capture="environment" />
+              <div class="payment-upload-placeholder" id="upload-placeholder">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span>Tap to upload screenshot</span>
+              </div>
+              <div class="payment-upload-preview" id="upload-preview" style="display:none;">
+                <img id="preview-img" alt="Screenshot preview" />
+                <button type="button" class="payment-upload-remove" id="upload-remove" aria-label="Remove">&times;</button>
+              </div>
+            </div>
           </div>
 
           <!-- Actions -->
@@ -129,6 +150,36 @@
   const recapGuests = document.getElementById('recap-guests');
   const recapTotal = document.getElementById('recap-total');
   const recapDp = document.getElementById('recap-dp');
+  const fileInput = document.getElementById('payment-screenshot');
+  const uploadBox = document.getElementById('upload-box');
+  const uploadPlaceholder = document.getElementById('upload-placeholder');
+  const uploadPreview = document.getElementById('upload-preview');
+  const previewImg = document.getElementById('preview-img');
+  const uploadRemove = document.getElementById('upload-remove');
+
+  // ─── FILE UPLOAD PREVIEW ───
+  let uploadFile = null;
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    uploadFile = file;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      previewImg.src = e.target.result;
+      uploadPlaceholder.style.display = 'none';
+      uploadPreview.style.display = 'flex';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  uploadRemove.addEventListener('click', () => {
+    uploadFile = null;
+    fileInput.value = '';
+    previewImg.src = '';
+    uploadPreview.style.display = 'none';
+    uploadPlaceholder.style.display = 'flex';
+  });
 
   // ─── REPLACE QR PLACEHOLDER WITH REAL IMAGE (if configured) ───
   if (GCASH.qrImage) {
@@ -178,6 +229,19 @@
     }
   }
 
+  // ─── PH MOBILE VALIDATION ───
+  function isValidPHMobile(num) {
+    if (!num) return false;
+    const cleaned = num.replace(/\s/g, ''); // strip spaces
+    if (cleaned.startsWith('09')) {
+      return cleaned.length === 11 && /^\d{11}$/.test(cleaned);
+    }
+    if (cleaned.startsWith('+63')) {
+      return cleaned.length === 13 && /^\+63\d{10}$/.test(cleaned);
+    }
+    return false;
+  }
+
   // ─── OPEN MODAL ───
   function openModal() {
     const data = getBookingData();
@@ -188,8 +252,8 @@
       document.getElementById('guest-name')?.focus();
       return false;
     }
-    if (!data.mobile) {
-      alert('Please enter your mobile number.');
+    if (!isValidPHMobile(data.mobile)) {
+      alert('Enter a valid PH mobile: 0917 123 4567 (11 digits) or +63 917 123 4567 (13 chars).');
       document.getElementById('guest-mobile')?.focus();
       return false;
     }
@@ -225,6 +289,12 @@
   function closeModal() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    // Reset file upload
+    uploadFile = null;
+    fileInput.value = '';
+    previewImg.src = '';
+    uploadPreview.style.display = 'none';
+    uploadPlaceholder.style.display = 'flex';
   }
 
   // ─── SUBMIT PAYMENT ───
@@ -244,19 +314,26 @@
     submitBtn.textContent = 'Sending...';
 
     // Send email via EmailJS
+    const templateParams = {
+      name: data.name,
+      mobile: data.mobile,
+      date: data.date,
+      adults: data.adults,
+      children: data.children,
+      infants: data.infants,
+      total: data.total,
+      downpayment: data.downpayment,
+      reference: ref,
+      submittedAt: submittedAt,
+    };
+
+    // Attach screenshot if uploaded
+    if (uploadFile) {
+      templateParams.attachment = uploadFile;
+    }
+
     emailjs
-      .send(EMAILJS.serviceId, EMAILJS.templateId, {
-        name: data.name,
-        mobile: data.mobile,
-        date: data.date,
-        adults: data.adults,
-        children: data.children,
-        infants: data.infants,
-        total: data.total,
-        downpayment: data.downpayment,
-        reference: ref,
-        submittedAt: submittedAt,
-      })
+      .send(EMAILJS.serviceId, EMAILJS.templateId, templateParams)
       .then(
         () => {
           // Save to localStorage
