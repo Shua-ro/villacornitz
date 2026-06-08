@@ -89,6 +89,47 @@ Object.values(inputs).forEach((el) => {
   }
 })();
 
+// ─── BLOCKED DATES ───
+let blockedDates = [];
+
+// Create warning element
+const dateInput = document.getElementById('booking-date');
+const dateWarning = document.createElement('p');
+dateWarning.className = 'booking-note date-blocked-warning';
+dateWarning.style.cssText = 'color: #b91c1c; margin-top: 8px; display: none;';
+dateWarning.textContent = '❌ This date is fully booked. Please select another date.';
+dateInput?.parentNode?.appendChild(dateWarning);
+
+function isDateBlocked(dateStr) {
+  return blockedDates.includes(dateStr);
+}
+
+function checkDateAvailability() {
+  if (!dateInput) return;
+  const val = dateInput.value;
+  if (isDateBlocked(val)) {
+    dateWarning.style.display = 'block';
+    dateInput.style.borderColor = '#b91c1c';
+  } else {
+    dateWarning.style.display = 'none';
+    dateInput.style.borderColor = '';
+  }
+}
+
+// Fetch blocked dates from JSON file (works on Vercel)
+fetch('blocked-dates.json')
+  .then(r => r.json())
+  .then(data => {
+    blockedDates = data;
+    window.__blockedDates = data; // share with payment-modal.js
+    checkDateAvailability();
+  })
+  .catch(() => {}); // silently fail if file doesn't exist
+
+// Validate date on change
+dateInput?.addEventListener('change', checkDateAvailability);
+dateInput?.addEventListener('input', checkDateAvailability);
+
 // Dev notice dismiss
 document.querySelector('.dev-notice-close')?.addEventListener('click', () => {
   document.querySelector('.dev-notice')?.classList.add('hidden');

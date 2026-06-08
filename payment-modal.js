@@ -167,6 +167,17 @@
     return parts.length ? parts.join(', ') : 'None';
   }
 
+  // ─── BLOCKED DATE CHECK ───
+  function isDateBlocked(dateStr) {
+    try {
+      return window.__blockedDates
+        ? window.__blockedDates.includes(dateStr)
+        : false;
+    } catch (_) {
+      return false;
+    }
+  }
+
   // ─── OPEN MODAL ───
   function openModal() {
     const data = getBookingData();
@@ -184,6 +195,10 @@
     }
     if (data.adults + data.children + data.infants === 0) {
       alert('Please add at least one guest.');
+      return false;
+    }
+    if (isDateBlocked(data.date)) {
+      alert('Sorry, this date is fully booked. Please choose another date.');
       return false;
     }
 
