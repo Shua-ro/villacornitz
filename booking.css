@@ -8,7 +8,7 @@
   right: 0;
   z-index: 200;
   padding: 12px 56px;
-  background: rgb(129, 94, 27);
+  background: rgb(156, 113, 33);
   border-bottom: 0.5px solid rgba(229, 169, 59, 1);
   display: flex;
   align-items: center;
@@ -382,7 +382,7 @@
 /* ── BOOKING HEADER OVERRIDE ── */
 /* Prevents the booking nav from being swept into the slide-out drawer */
 #booking-header {
-  top: 46px; /* clear the dev notice */
+  top: 44px; /* clear the dev notice */
 }
 
 body.dev-notice-dismissed #booking-header {

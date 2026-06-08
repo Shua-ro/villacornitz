@@ -7,7 +7,7 @@
   // 👇 Replace with your actual GCash details
   const GCASH = {
     name: 'Villa Cornitz Resort',
-    number: '0917 XXX XXXX',
+    number: '+63 9636493236',
     qrImage: '', // e.g. 'assets/gcash-qr.png' — leave empty for placeholder
   };
 
