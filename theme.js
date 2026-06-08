@@ -49,13 +49,16 @@ function getPreferredTheme() {
 function applyTheme(theme) {
   const html = document.documentElement;
   const btn = document.getElementById('theme-toggle');
+  const messenger = document.querySelector('.fab img');
 
   if (theme === 'dark') {
     html.setAttribute('data-theme', 'dark');
     if (btn) btn.innerHTML = sunSVG;
+    if (messenger) messenger.style.filter = 'brightness(0)';
   } else {
     html.removeAttribute('data-theme');
     if (btn) btn.innerHTML = moonSVG;
+    if (messenger) messenger.style.filter = 'brightness(0) invert(1)';
   }
 
   swapHeroVideos(theme);
