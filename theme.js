@@ -43,7 +43,7 @@ function swapHeroVideos(theme) {
 function getPreferredTheme() {
   const saved = localStorage.getItem('theme');
   if (saved === 'dark' || saved === 'light') return saved;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return 'light'; // default to light mode; user can toggle to dark
 }
 
 function applyTheme(theme) {
