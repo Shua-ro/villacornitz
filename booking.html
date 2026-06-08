@@ -19,9 +19,16 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="responsive.css" />
     <link rel="stylesheet" href="booking.css" />
+    <link rel="stylesheet" href="payment-modal.css" />
   </head>
 
   <body>
+    <!-- DEV NOTICE -->
+    <div class="dev-notice">
+      <span>🚧 Booking page is still in development — you can browse but bookings won't be processed yet. Please book via contact.</span>
+      <button class="dev-notice-close" aria-label="Dismiss">&times;</button>
+    </div>
+
     <!-- HEADER (minimal) -->
     <header id="booking-header">
       <div class="logo">Villa<span>Cornitz</span> Resort</div>
@@ -152,6 +159,8 @@
     </main>
 
     <script src="booking.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="payment-modal.js"></script>
     <script src="theme.js"></script>
   </body>
 </html>

@@ -89,33 +89,10 @@ Object.values(inputs).forEach((el) => {
   }
 })();
 
-// Payment button (placeholder)
-document.getElementById('pay-btn').addEventListener('click', () => {
-  const v = getValues();
-  const name = document.getElementById('guest-name').value.trim();
-  const mobile = document.getElementById('guest-mobile').value.trim();
-
-  if (!name) {
-    alert('Please enter your full name.');
-    document.getElementById('guest-name').focus();
-    return;
-  }
-  if (!mobile) {
-    alert('Please enter your mobile number.');
-    document.getElementById('guest-mobile').focus();
-    return;
-  }
-  if (v.adult + v.child + v.infant === 0) {
-    alert('Please add at least one guest.');
-    return;
-  }
-
-  alert(
-    'Thank you, ' +
-      name +
-      '! Your booking request has been received.\n\n' +
-      'We will contact you at ' +
-      mobile +
-      ' to confirm your reservation.'
-  );
+// Dev notice dismiss
+document.querySelector('.dev-notice-close')?.addEventListener('click', () => {
+  document.querySelector('.dev-notice')?.classList.add('hidden');
+  document.body.classList.add('dev-notice-dismissed');
 });
+
+// Payment button — handled by payment-modal.js

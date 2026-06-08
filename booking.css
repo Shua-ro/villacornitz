@@ -1,6 +1,50 @@
 /* ── BOOKING LAYOUT ── */
+
+/* ── DEV NOTICE ── */
+.dev-notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: 12px 56px;
+  background: var(--gold-dim);
+  border-bottom: 0.5px solid rgba(229, 169, 59, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--navy);
+  text-align: center;
+}
+
+.dev-notice-close {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.dev-notice-close:hover {
+  color: var(--navy);
+}
+
+.dev-notice.hidden {
+  display: none;
+}
 .booking-page {
-  padding-top: 90px;
+  padding-top: 136px; /* 46px dev notice + 90px header */
   padding-bottom: 80px;
   max-width: 1200px;
   margin: 0 auto;
@@ -337,6 +381,17 @@
 
 /* ── BOOKING HEADER OVERRIDE ── */
 /* Prevents the booking nav from being swept into the slide-out drawer */
+#booking-header {
+  top: 46px; /* clear the dev notice */
+}
+
+body.dev-notice-dismissed #booking-header {
+  top: 0;
+}
+
+body.dev-notice-dismissed .booking-page {
+  padding-top: 90px;
+}
 #booking-header nav {
   position: static !important;
   transform: none !important;
